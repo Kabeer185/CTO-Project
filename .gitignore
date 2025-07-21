@@ -1,3 +1,7 @@
 .env
 .idea/
-db_sqlite3
+CTO/__pycache__/
+db.sqlite3
+social/__pycache__/
+social/migrations/__pycache__/
+

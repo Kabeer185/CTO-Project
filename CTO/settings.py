@@ -164,16 +164,31 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'social.User'
 
 #log in integration
-ACCOUNT_LOGIN_METHODS = {'email'}
-ACCOUNT_SIGNUP_FIELDS={
-    "username":{"required":True},
-    "email":{"required":True},
-}
-ACCOUNT_USER_MODEL_USERNAME_FIELD = 'username'
+# ACCOUNT_LOGIN_METHODS = {'email'}
+# ACCOUNT_SIGNUP_FIELDS={
+#     "username":{"required":True},
+#     "email":{"required":True},
+# }
+# ACCOUNT_USER_MODEL_USERNAME_FIELD = 'username'
+#
+# REST_AUTH_REGISTER_SERIALIZERS = {
+#     'REGISTER_SERIALIZER': 'social.serializers.UserSerializer',
+# }
+ACCOUNT_AUTHENTICATION_METHOD = 'email'  # or 'username_email', or 'username'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = True
 
-REST_AUTH_REGISTER_SERIALIZERS = {
-    'REGISTER_SERIALIZER': 'social.serializers.UserSerializer',
+REST_AUTH = {
+    "USE_JWT": True,
+    "JWT_AUTH_COOKIE": "_auth",
+    "JWT_AUTH_REFRESH_COOKIE": "_refresh",
+    "JWT_AUTH_HTTPONLY": False,
+    "SIGNUP_FIELDS": {
+        "username": {"required": True},
+        "email": {"required": True},
+    }
 }
+
 
 AUTHENTICATION_BACKENDS = [
     'social.auth_backends.EmailBackend',
