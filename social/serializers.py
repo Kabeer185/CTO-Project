@@ -8,8 +8,10 @@ from .models import *
 
 
 class UserSerializer(serializers.ModelSerializer):
-    email = serializers.EmailField(required=app_settings.SIGNUP_FIELDS['email']['required'])
-    username = serializers.CharField(required=app_settings.SIGNUP_FIELDS['username']['required'])
+    # email = serializers.EmailField(required=app_settings.SIGNUP_FIELDS['email']['required'])
+    # username = serializers.CharField(required=app_settings.SIGNUP_FIELDS['username']['required'])
+    email = serializers.EmailField(required=True)
+    username = serializers.CharField(required=True)
     gender = serializers.CharField(required=True)
 
     class Meta:
@@ -80,14 +82,15 @@ class OTPSerializer(serializers.ModelSerializer):
         return value
 
 class RegenerateOTPSerializer(serializers.Serializer):
-    email=serializers.EmailField(required=app_settings.SIGNUP_FIELDS['email']['required'])
-
+    # email=serializers.EmailField(required=app_settings.SIGNUP_FIELDS['email']['required'])
+    email = serializers.EmailField(required=True)
 
 
 
 
 class LoginSerializer(serializers.Serializer):
-    email=serializers.EmailField(required=app_settings.SIGNUP_FIELDS['email']['required'])
+    # email=serializers.EmailField(required=app_settings.SIGNUP_FIELDS['email']['required'])
+    email = serializers.EmailField(required=True)
     password=serializers.CharField(required=True)
 
     def validate(self,data):
