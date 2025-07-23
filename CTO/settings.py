@@ -15,7 +15,7 @@ warnings.filterwarnings("ignore", message=".*app_settings.EMAIL_REQUIRED is depr
 warnings.filterwarnings("ignore", message=".*ACCOUNT_LOGIN_METHODS conflicts with ACCOUNT_SIGNUP_FIELDS.*")
 
 from pathlib import Path
-import dj_database_url
+# import dj_database_url
 from datetime import timedelta
 from allauth.account import app_settings as allauth_account_settings
 from dotenv import load_dotenv
@@ -265,19 +265,19 @@ REST_AUTH = {
     "JWT_AUTH_HTTPONLY": False,
 }
 
-
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('DB_NAME'),
-        'USER': os.getenv('DB_USER'),
-        'PASSWORD': os.getenv('DB_PASSWORD'),
-        'HOST': os.getenv('DB_HOST'),
-        'PORT': os.getenv('DB_PORT'),
-    }
-}
-
-print("DB NAME:", os.getenv('DB_NAME'))
+#
+#
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': os.getenv('DB_NAME'),
+#         'USER': os.getenv('DB_USER'),
+#         'PASSWORD': os.getenv('DB_PASSWORD'),
+#         'HOST': os.getenv('DB_HOST'),
+#         'PORT': os.getenv('DB_PORT'),
+#     }
+# }
+#
+# print("DB NAME:", os.getenv('DB_NAME'))
 
 
