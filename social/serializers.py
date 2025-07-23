@@ -8,8 +8,6 @@ from .models import *
 
 
 class UserSerializer(serializers.ModelSerializer):
-    # email = serializers.EmailField(required=app_settings.SIGNUP_FIELDS['email']['required'])
-    # username = serializers.CharField(required=app_settings.SIGNUP_FIELDS['username']['required'])
     email = serializers.EmailField(required=True)
     username = serializers.CharField(required=True)
     gender = serializers.CharField(required=True)
@@ -82,14 +80,12 @@ class OTPSerializer(serializers.ModelSerializer):
         return value
 
 class RegenerateOTPSerializer(serializers.Serializer):
-    # email=serializers.EmailField(required=app_settings.SIGNUP_FIELDS['email']['required'])
     email = serializers.EmailField(required=True)
 
 
 
 
 class LoginSerializer(serializers.Serializer):
-    # email=serializers.EmailField(required=app_settings.SIGNUP_FIELDS['email']['required'])
     email = serializers.EmailField(required=True)
     password=serializers.CharField(required=True)
 
@@ -132,7 +128,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
 class PostCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
-        fields = ['id','user', 'post_type', 'content', 'about', 'image', 'video']
+        fields = ['id','user', 'post_type', 'content', 'about', 'image', 'video','created_at','bird_species','location','activity','duration','datetime']
         extra_kwargs = {
             'user': {'read_only': True},
             'post_type': {'required': False},
@@ -195,9 +191,8 @@ class PostListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
         fields = [
-            'id', 'user', 'post_type', 'content', 'about',
-            'image', 'video', 'like_count', 'comment_count',
-            'comments', 'created_at'
+            'id', 'user',  'like_count', 'comment_count','about', 'post_type', 'content', 'image', 'video',
+            'bird_species','location','activity','duration','datetime','comments', 'created_at'
         ]
 
     def get_comments(self, obj):

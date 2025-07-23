@@ -42,6 +42,11 @@ class Post(models.Model):
     about = models.CharField(max_length=255, null=True, blank=True)
     image = models.ImageField(upload_to='posts/images/', null=True, blank=True)
     video = models.FileField(upload_to='posts/videos/', null=True, blank=True)
+    location = models.CharField(max_length=25, null=True, blank=True)
+    bird_species=models.CharField(max_length=25, null=True, blank=True)
+    activity=models.CharField(max_length=25, null=True, blank=True)
+    duration=models.CharField(max_length=100,null=True, blank=True)
+    datetime=models.DateTimeField(null=True, blank=True)
     post_type = models.CharField(max_length=10, choices=POST_TYPE_CHOICES, default='text')
     created_at = models.DateTimeField(auto_now_add=True)
 

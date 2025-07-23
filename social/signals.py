@@ -18,7 +18,7 @@ def password_reset_token_created(sender, instance, reset_password_token, *args, 
     msg=EmailMultiAlternatives(
         "Password Reset OTP",
         email_text,
-       "kabeerahmad256@gmail.com",
+       "conversationthroughobservation@gmail.com",
         [reset_password_token.user.email]
     )
     msg.attach_alternative(email_html, "text/html")
