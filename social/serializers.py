@@ -26,9 +26,11 @@ class UserSerializer(serializers.ModelSerializer):
         return value
 
     def validate(self, data):
-        if User.objects.filter(email=data['email']).exists():
+        email = data.get('email')
+        username = data.get('username')
+        if User.objects.filter(email=email,is_verified=True).exists():
             raise serializers.ValidationError({"detail": "This email is already registered."})
-        if User.objects.filter(username=data['username']).exists():
+        if User.objects.filter(username=username,is_verified=True).exists():
             raise serializers.ValidationError({"detail": "This username is already registered."})
         return data
 

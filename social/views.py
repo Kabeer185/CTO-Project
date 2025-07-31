@@ -32,6 +32,8 @@ class SignUpView(viewsets.ModelViewSet):
 
         try:
             user = User.objects.get(email=email,username=username)
+            if user.is_verified:
+                raise serializers.ValidationError({"detail": "This user is already registered and verified."})
 
             update_fields =['date_of_birth','gender','phone_number','username']
             for field in update_fields:
