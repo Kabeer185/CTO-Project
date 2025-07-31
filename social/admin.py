@@ -22,7 +22,7 @@ class OTPAdmin(admin.ModelAdmin):
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
     list_display = [
-        'id', 'user', 'post_type', 'location', 'bird_species','activity','duration','datetime',
+        'id', 'user', 'location', 'bird_species','activity','duration','datetime',
         'created_at', 'like_count', 'comment_count'
     ]
 

@@ -30,28 +30,20 @@ class OTP(models.Model):
 
 
 class Post(models.Model):
-    POST_TYPE_CHOICES = [
-        ('text', 'Text'),
-        ('image', 'Image'),
-        ('video', 'Video'),
-    ]
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts')
-    content = models.TextField(null=True, blank=True)
     about = models.CharField(max_length=255, null=True, blank=True)
     image = models.ImageField(upload_to='posts/images/', null=True, blank=True)
-    video = models.FileField(upload_to='posts/videos/', null=True, blank=True)
     location = models.CharField(max_length=25, null=True, blank=True)
     bird_species=models.CharField(max_length=25, null=True, blank=True)
     activity=models.CharField(max_length=25, null=True, blank=True)
     duration=models.CharField(max_length=100,null=True, blank=True)
     datetime=models.DateTimeField(null=True, blank=True)
-    post_type = models.CharField(max_length=10, choices=POST_TYPE_CHOICES, default='text')
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.user.username} - {self.post_type} - {self.created_at.strftime('%Y-%m-%d')}"
+        return f"{self.user.username} - {self.created_at.strftime('%Y-%m-%d')}"
 
 
     @property

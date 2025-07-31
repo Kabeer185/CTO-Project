@@ -130,37 +130,10 @@ class UserProfileSerializer(serializers.ModelSerializer):
 class PostCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
-        fields = ['id','user', 'post_type', 'content', 'about', 'image', 'video','created_at','bird_species','location','activity','duration','datetime']
+        fields = ['id','user', 'about', 'image','created_at','bird_species','location','activity','duration','datetime']
         extra_kwargs = {
             'user': {'read_only': True},
-            'post_type': {'required': False},
         }
-
-    def validate(self, data):
-        content = data.get('content')
-        image = data.get('image')
-        video = data.get('video')
-        post_type = data.get('post_type')
-
-        if not post_type:
-            if video:
-                data['post_type'] = 'video'
-            elif image:
-                data['post_type'] = 'image'
-            elif content:
-                data['post_type'] = 'text'
-            else:
-                raise serializers.ValidationError({"detail":"At least one of content, image, or video is required."})
-
-        post_type = data['post_type']
-        if post_type == 'text' and not content:
-            raise serializers.ValidationError({"detail":"Text content is required for text posts."})
-        if post_type == 'image' and not image:
-            raise serializers.ValidationError({"detail":"Image is required for image posts."})
-        if post_type == 'video' and not video:
-            raise serializers.ValidationError({"detail":"Video is required for video posts."})
-
-        return data
 
     def create(self, validated_data):
         validated_data['user'] = self.context['request'].user
